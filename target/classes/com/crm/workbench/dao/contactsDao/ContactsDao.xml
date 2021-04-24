@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crm.workbench.dao.contactsDao.ContactsDao">
+    <select id="selectByName" resultType="com.crm.workbench.domain.contacts.Contacts">
+        select * from tbl_contacts where fullname =#{name}
+    </select>
+
+    <insert id="insert">
+        insert
+        into
+        tbl_contacts (id, owner, customerId, fullname, mphone )
+        values
+        (#{id},#{owner},#{customerId},#{fullname},#{mphone})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

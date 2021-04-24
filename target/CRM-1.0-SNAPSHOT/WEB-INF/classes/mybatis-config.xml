@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--控制mybatis全局行为-->
+    <properties resource="jdbc.properties"/>
+        <settings>
+        <!--设置mybatis输出日志 logImpl表示控制日志,STDOUT_LOGGING表示输出到控制台-->
+            <setting name="logImpl" value="STDOUT_LOGGING"/>
+        </settings>
+    <typeAliases>
+        <package name="com.crm.settings.domain"/>
+        <package name="com.crm.workbench.domain"/>
+    </typeAliases>
+    <!--配置mybatis环境:数据库连接信息,可以配置多个,
+                        default必须和某个environment的值一样
+                        用来设置默认的数据库-->
+    <environments default="mysql">
+        <!--environment:表示一个数据库信息的配置    id:唯一值,自定义的,表示环境的名称-->
+        <environment id="mysql">
+            <!--配置事务类型：mybatis的事务类型
+            type：JDBC（表示使用jdbc中的Connection对象的提交commit和回滚rollback）-->
+            <transactionManager type="JDBC"/>
+            <!--dataSource：表示数据源,连接数据库的
+                type: 表示数据源的类型,POOLED表示使用连接池
+            -->
+            <dataSource type="POOLED">
+                <!--连接数据库的四个要素,其中name属性的值都是固定的，不能自定义-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.name}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--sql mapper(sql映射文件)的位置-->
+    <mappers>
+        <!--一个mapper标签指定一个文件的位置,可以指定多个,从****类路径(target/classes)开始的路径信息****-->
+        <package name="com.crm.settings.dao"/>
+        <package name="com.crm.workbench.dao"/>
+    </mappers>
+</configuration>
+
